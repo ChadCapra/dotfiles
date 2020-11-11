@@ -1,0 +1,14 @@
+# Ignore all files and directories
+*
+
+# Except the following folder/files:
+!README.md
+
+!bin/*
+
+!.gitignore
+!.tmux.conf
+!.vimrc
+!.zshrc
+
+
