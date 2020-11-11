@@ -64,8 +64,7 @@ git clone --bare $GIT_REPO_PATH $GIT_LOCAL_DIR
 
 # set alias and create backup folder (in case dotfiles already exist from installs)
 alias dotgit='/usr/bin/git --git-dir=$HOME/$GIT_LOCAL_DIR/ --work-tree=$HOME'
-mkdir $GIT_LOCAL_BAK
-mkdir $GIT_LOCAL_BAK/bin
+mkdir -p $GIT_LOCAL_BAK/bin
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} mv {} $GIT_LOCAL_BAK/{}
