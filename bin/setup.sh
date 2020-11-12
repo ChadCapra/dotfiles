@@ -29,9 +29,6 @@ sh -c "$(curl -fsSL $OH_MY_ZSH_URL)"
 git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
 
-# set alias
-alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
-
 # create ssh key
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
 
@@ -59,12 +56,13 @@ echo "Before continuing, copy and paste ssh-key into github to allow access"
 echo ""
 read continue 
 
-# grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
-sudo rm -rf $DOTGIT_DIR
-git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
-
-# create backup directory (with bin folder) to save existing files
+# delete existing bare git dir and create new backup folder
+rm -rf $DOTGIT_DIR
 sudo mkdir -p $DOTGIT_BAK/bin
+
+# grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
+alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
+git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} \
