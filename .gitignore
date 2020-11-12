@@ -6,9 +6,9 @@
 
 !bin/*
 
-!.gitignore
-!.tmux.conf
-!.vimrc
-!.zshrc
+!\.gitignore
+!\.tmux.conf
+!\.vimrc
+!\.zshrc
 
 
