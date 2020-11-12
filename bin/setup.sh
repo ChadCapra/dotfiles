@@ -3,19 +3,14 @@
 # Set Variables for script as desired
 NAME="Chad Capra"
 EMAIL="chadcapra@gmail.com"
+GIT_REPO_PATH="git@github.com:ChadCapra/dotfiles.git"
 
 SSH_KEY_TYPE="ed25519" 
 SSH_KEY_PARAMS="-o -a 256" 
 SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
 
-GIT_REPO_PATH="git@github.com:ChadCapra/dotfiles.git"
-GIT_LOCAL_DIR=$HOME/dotfiles
-GIT_LOCAL_BAK=$GIT_LOCAL_DIR-bak
-#           !!! IMPORTANT NOTE - PLEASE READ !!!
-#  GIT_LOCAL_DIR is the name of the folder where git repo is pulled into
-#  This path is used in other files for referencing location of git repo.
-#  Therefore, if you change the above variable, please change in the following files:
-#    - .zshrc
+export DOTGIT_DIR=$HOME/dotfiles
+DOTGIT_BAK=$DOTGIT_DIR-bak
 
 # Update apt for latest versions
 sudo apt update
@@ -24,10 +19,25 @@ sudo apt update
 sudo apt install -y vim git curl wget tmux zsh
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh -c "$(curl -fsSL $OH_MY_ZSH_URL)"
 
+## Check if key exists at given ssh location (and ask user how to proceed)
+#if [ -f $SSH_KEY_PATH]; then
+#
+#  echo -n "ssh key already exists at $SSH_KEY_PATH"
+#  echo -n "Do you wish to (o)verwrite or (k)eep existing (o/k)?"
+#  read answer
+#  
+#  if [ "$answer" != "${answer#[Oo]}" ] ;then
+#
+#    # delete existing key (public & private)
+#    rm -f $SSH_KEY_PATH
+#    rm -f $SSH_KEY_PATH.pub
+ 
 # create ssh key
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
+
 
 echo ""
 echo "###############################"
@@ -57,18 +67,18 @@ git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
 
 # remove previous git (and backup) folder
-sudo rm -rf $GIT_LOCAL_DIR
-sudo rm -rf $GIT_LOCAL_BAK
+sudo rm -rf $DOTGIT_DIR
+sudo rm -rf $DOTGIT_BAK
 
-# clone git repo to "~/$GIT_LOCAL_DIR"
-git clone --bare $GIT_REPO_PATH $GIT_LOCAL_DIR
+# clone git repo to "~/$DOTGIT_DIR"
+git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 
 # set alias and create backup folder (in case dotfiles already exist from installs)
-alias dotgit='/usr/bin/git --git-dir=$GIT_LOCAL_DIR/ --work-tree=$HOME'
-mkdir -p $GIT_LOCAL_BAK/bin
+alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
+mkdir -p $DOTGIT_BAK/bin
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
-dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} mv {} $GIT_LOCAL_BAK/{}
+dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} mv {} $DOTGIT_BAK/{}
 dotgit checkout
 
 # Set up stream for pushing updates back to github
