@@ -9,16 +9,13 @@ SSH_KEY_PARAMS="-o -a 256"
 SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
 
 GIT_REPO_PATH="git@github.com:ChadCapra/dotfiles.git"
-GIT_LOCAL_DIR=dotfiles
+GIT_LOCAL_DIR=$HOME/dotfiles
 GIT_LOCAL_BAK=$GIT_LOCAL_DIR-bak
 #           !!! IMPORTANT NOTE - PLEASE READ !!!
 #  GIT_LOCAL_DIR is the name of the folder where git repo is pulled into
 #  This path is used in other files for referencing location of git repo.
 #  Therefore, if you change the above variable, please change in the following files:
 #    - .zshrc
-
-# Move to home directory
-cd $HOME
 
 # Update apt for latest versions
 sudo apt update
@@ -67,7 +64,7 @@ sudo rm -rf $GIT_LOCAL_BAK
 git clone --bare $GIT_REPO_PATH $GIT_LOCAL_DIR
 
 # set alias and create backup folder (in case dotfiles already exist from installs)
-alias dotgit='/usr/bin/git --git-dir=$HOME/$GIT_LOCAL_DIR/ --work-tree=$HOME'
+alias dotgit='/usr/bin/git --git-dir=$GIT_LOCAL_DIR/ --work-tree=$HOME'
 mkdir -p $GIT_LOCAL_BAK/bin
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
