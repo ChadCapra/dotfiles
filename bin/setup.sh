@@ -12,6 +12,9 @@ SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
 export DOTGIT_DIR=$HOME/dotfiles
 DOTGIT_BAK=$DOTGIT_DIR-bak
 
+# Set current directory to home
+cd $HOME
+
 # Update apt for latest versions
 sudo apt update
 
@@ -75,7 +78,7 @@ git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 
 # set alias and create backup folder (in case dotfiles already exist from installs)
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
-mkdir -p $DOTGIT_BAK/bin
+sudo mkdir -p $DOTGIT_BAK/bin
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} mv {} $DOTGIT_BAK/{}
