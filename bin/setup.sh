@@ -59,6 +59,10 @@ read continue
 git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
 
+# remove previous git (and backup) folder
+sudo rm -rf $GIT_LOCAL_DIR
+sudo rm -rf $GIT_LOCAL_BAK
+
 # clone git repo to "~/$GIT_LOCAL_DIR"
 git clone --bare $GIT_REPO_PATH $GIT_LOCAL_DIR
 
