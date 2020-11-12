@@ -81,7 +81,7 @@ alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 sudo mkdir -p $DOTGIT_BAK/bin
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
-dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} mv {} $DOTGIT_BAK/{}
+dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} sudo mv {} $DOTGIT_BAK/{}
 dotgit checkout
 
 # Set up stream for pushing updates back to github
