@@ -1,3 +1,14 @@
-# Ignore dotfiles directory
-/dotfiles/
+# Ignore everything
+*
+# But allow descent into directories
+!*/
 
+# Recursively allow everything under "/bin"
+!/bin/**
+
+# And the following files (at $HOME)
+!README.md
+!\.gitignore
+!\.tmux.conf
+!\.vimrc
+!\.zshrc
