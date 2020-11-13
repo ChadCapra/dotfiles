@@ -67,7 +67,7 @@ git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 # and capture existing files and move to backup folder
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} \
-  | xargs -I{} cp -p {} $DOTGIT_BAK/{}
+  | xargs -I{} cp --parents {} $DOTGIT_BAK/{}
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} \
   | xargs -I{} mv {} $DOTGIT_BAK/{}
 dotgit checkout
