@@ -57,8 +57,9 @@ echo ""
 read continue 
 
 # delete existing bare git dir and create new backup folder
+# must include sub directories as mv will not (e.g. /bin)
 rm -rf $DOTGIT_DIR
-mkdir -p $DOTGIT_BAK
+mkdir -p $DOTGIT_BAK/bin
 
 # grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
@@ -66,8 +67,6 @@ git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 # and capture existing files and move to backup folder
-dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} \
-  | xargs -I{} cp --parents {} $DOTGIT_BAK/{}
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} \
   | xargs -I{} mv {} $DOTGIT_BAK/{}
 dotgit checkout
