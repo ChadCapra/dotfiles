@@ -58,6 +58,7 @@ read continue
 
 # delete existing bare git dir and create new backup folder
 rm -rf $DOTGIT_DIR
+mkdir $DOTGIT_DIR
 
 # grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
