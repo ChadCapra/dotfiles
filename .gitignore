@@ -1,14 +1,3 @@
-# Ignore all files and directories
-*
-
-# Except the following folder/files:
-!bin/
-!bin/setup.sh
-
-!README.md
-!\.gitignore
-!\.tmux.conf
-!\.vimrc
-!\.zshrc
-
+# Ignore dotfiles directory
+/dotfiles/
 
