@@ -2,10 +2,10 @@
 *
 
 # Except the following folder/files:
+!bin/
+!bin/setup.sh
+
 !README.md
-
-!/bin/setup.sh
-
 !\.gitignore
 !\.tmux.conf
 !\.vimrc
