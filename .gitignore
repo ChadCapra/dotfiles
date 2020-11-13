@@ -1,10 +1,9 @@
 # Ignore everything
 *
-# But allow descent into directories
-!*/
 
 # Recursively allow everything under "/bin"
-!/bin/**
+!bin/
+!bin/setup.sh
 
 # And the following files (at $HOME)
 !README.md
