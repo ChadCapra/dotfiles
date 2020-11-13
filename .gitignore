@@ -4,7 +4,7 @@
 # Except the following folder/files:
 !README.md
 
-!bin/*
+!/bin/setup.sh
 
 !\.gitignore
 !\.tmux.conf
