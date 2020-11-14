@@ -97,4 +97,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dotgit='/usr/bin/git --git-dir=$HOME/$GIT_LOCAL_DIR/ --work-tree=$HOME'
+
+# The following path must be changed "dotfiles" are stored in a different dir
+alias dotgit='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'

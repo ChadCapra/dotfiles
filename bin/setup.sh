@@ -74,7 +74,11 @@ dotgit checkout
 # Set up stream for pushing updates back to github
 dotgit push --set-upstream origin main
 
+# Set default shell zsh
+sudo chsh -s /usr/bin/zsh $USER
+
 # end of script
-echo "Congrats on your newly setup machine!! Nice work :)"
+echo "Congrats, your new machine is all setup!"
+echo "Logout and back in to start using zsh and all the goodness!"
 
 
