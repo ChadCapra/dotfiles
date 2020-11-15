@@ -21,15 +21,12 @@ sudo apt update
 # Install vim, git, curl, wget, tmux, zsh
 sudo apt install -y vim git curl wget tmux zsh
 
-# Install oh-my-zsh (unattended/keep-zshrc = leave shell and existing .zshrc)
-OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --unattended --keep-zshrc
-
 # config git
 git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
 
 # create ssh key
+echo "Creating ssh key at default location. Feel free to password protect key"
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
 
 echo ""
@@ -74,12 +71,12 @@ dotgit checkout
 # Set up stream for pushing updates back to github
 dotgit push --set-upstream origin main
 
-# Set default shell zsh (now that everything is installed)
-sudo chsh -s /usr/bin/zsh $USER
-
-# clean up empty backup folders
+# remove any empty backup folders
 find $HOME/DOTGIT_DIR* -empty -type d -delete
 
-# end of script
-echo "Congrats, your new machine is all setup!"
-echo "Logout and back in to start using zsh and all the goodness!"
+echo "Installing oh-my-zsh and changing default shell to zsh"
+
+# Install oh-my-zsh (but keep .zshrc) - Leave as last command!!
+OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --keep-zshrc
+
