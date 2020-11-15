@@ -79,7 +79,7 @@ dotgit checkout
 dotgit push --set-upstream origin main
 
 # remove any empty backup folders
-find $HOME/$DOTGIT_DIR* -empty -type d -delete
+find $DOTGIT_BAK -empty -type d -delete
 
 # Add DOTGIT_DIR env variable for zsh to allow for dotgit command
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
@@ -101,5 +101,5 @@ echo ""
 read continue
 
 # final step is to reset terminal
-reset
+reset; exec sudo --login --user $USER
 
