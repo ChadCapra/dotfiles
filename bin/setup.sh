@@ -29,14 +29,17 @@ git config --global user.email "$EMAIL"
 echo ""
 echo ""
 echo "#########################################################################"
-echo "Creating ssh key at default location. Feel free to password protect key"
+echo "###  Creating ssh key at $SSH_KEY_PATH"
+echo "###    - Add password to better protect ssh key"
 echo "#########################################################################"
+echo ""
+echo ""
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
 
 echo ""
 echo ""
 echo "#########################################################################"
-echo "#####   BEFORE SSH KEY   ######"
+echo "#####   $SSH_KEY_PATH.pub key below"
 echo "#########################################################################"
 echo ""
 
@@ -48,18 +51,11 @@ echo "$CONTENTS"
 # (once issue with char limit is figured out)
 #printf "\033]52;c;$(echo "$CONTENTS" | base64)\a"
 
-echo ""
-echo ""
-echo "#########################################################################"
-echo "#####   AFTER SSH KEY    ######"
-echo "#########################################################################"
-echo ""
-
 # pause to give user a chance to add key to github
 echo ""
 echo ""
 echo "#########################################################################"
-echo "Before continuing, copy and paste ssh-key into github to allow access"
+echo "###  Before continuing, copy above ssh-key into github to allow access"
 echo "#########################################################################"
 echo ""
 read continue 
@@ -83,7 +79,7 @@ dotgit checkout
 dotgit push --set-upstream origin main
 
 # remove any empty backup folders
-find $HOME/DOTGIT_DIR* -empty -type d -delete
+find $HOME/$DOTGIT_DIR* -empty -type d -delete
 
 # Add DOTGIT_DIR env variable for zsh to allow for dotgit command
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
@@ -93,13 +89,13 @@ OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --keep-zshrc --unattended
 
 # change default shell using sudo but for current user)
-sudo chsh -shell $(which zsh) $USER
+sudo chsh -s $(which zsh) $USER
 
 echo ""
 echo ""
 echo "#########################################################################"
-echo "Your machine is all set up! Let's restart the shell to launch zsh"
-echo "Press Enter to continue when ready..."
+echo "###   Your machine is all set up! Let's restart the shell to launch zsh"
+echo "###        * Press Enter to continue when ready..."
 echo "#########################################################################"
 echo ""
 read continue
