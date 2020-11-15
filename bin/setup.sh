@@ -26,13 +26,18 @@ git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
 
 # create ssh key
+echo ""
+echo ""
+echo "#########################################################################"
 echo "Creating ssh key at default location. Feel free to password protect key"
+echo "#########################################################################"
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
 
 echo ""
-echo "###############################"
+echo ""
+echo "#########################################################################"
 echo "#####   BEFORE SSH KEY   ######"
-echo "###############################"
+echo "#########################################################################"
 echo ""
 
 # show public ssh-key to add to github
@@ -43,13 +48,19 @@ echo "$CONTENTS"
 # (once issue with char limit is figured out)
 #printf "\033]52;c;$(echo "$CONTENTS" | base64)\a"
 
-echo "###############################"
+echo ""
+echo ""
+echo "#########################################################################"
 echo "#####   AFTER SSH KEY    ######"
-echo "###############################"
+echo "#########################################################################"
 echo ""
 
 # pause to give user a chance to add key to github
+echo ""
+echo ""
+echo "#########################################################################"
 echo "Before continuing, copy and paste ssh-key into github to allow access"
+echo "#########################################################################"
 echo ""
 read continue 
 
@@ -77,9 +88,22 @@ find $HOME/DOTGIT_DIR* -empty -type d -delete
 # Add DOTGIT_DIR env variable for zsh to allow for dotgit command
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
 
-echo "Installing oh-my-zsh and changing default shell to zsh"
-
-# Install oh-my-zsh (but keep .zshrc) - Leave as last command!!
+# Install oh-my-zsh (but keep .zshrc and don't change shells, yet)
 OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --keep-zshrc
+sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --keep-zshrc --unattended
+
+# change default shell using sudo but for current user)
+sudo chsh -shell $(which zsh) $USER
+
+echo ""
+echo ""
+echo "#########################################################################"
+echo "Your machine is all set up! Let's restart the shell to launch zsh"
+echo "Press Enter to continue when ready..."
+echo "#########################################################################"
+echo ""
+read continue
+
+# final step is to reset terminal
+reset
 
