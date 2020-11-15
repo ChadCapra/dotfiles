@@ -99,4 +99,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # The following path must be changed "dotfiles" are stored in a different dir
-alias dotgit='/usr/bin/git --git-dir=$HOME/$DOTGIT_DIR/ --work-tree=$HOME'
+alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
