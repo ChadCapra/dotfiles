@@ -21,9 +21,9 @@ sudo apt update
 # Install vim, git, curl, wget, tmux, zsh
 sudo apt install -y vim git curl wget tmux zsh
 
-# Install oh-my-zsh (unattended = do not change shell or run zsh)
+# Install oh-my-zsh (unattended/keep-zshrc = leave shell and existing .zshrc)
 OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --unattended
+sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --unattended --keep-zshrc
 
 # config git
 git config --global user.name "$NAME"
@@ -76,6 +76,9 @@ dotgit push --set-upstream origin main
 
 # Set default shell zsh (now that everything is installed)
 sudo chsh -s /usr/bin/zsh $USER
+
+# clean up empty backup folders
+find $HOME/DOTGIT_DIR* -empty -type d -delete
 
 # end of script
 echo "Congrats, your new machine is all setup!"
