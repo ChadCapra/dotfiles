@@ -9,7 +9,7 @@ SSH_KEY_TYPE="ed25519"
 SSH_KEY_PARAMS="-o -a 256" 
 SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
 
-export DOTGIT_DIR=$HOME/dotfiles
+DOTGIT_DIR=$HOME/dotfiles
 DOTGIT_BAK=$DOTGIT_DIR-"$(date +"%Y%m%d_%H%M%S")"
 
 # Set current directory to home
