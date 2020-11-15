@@ -21,10 +21,6 @@ sudo apt update
 # Install vim, git, curl, wget, tmux, zsh
 sudo apt install -y vim git curl wget tmux zsh
 
-# Install oh-my-zsh
-OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh -c "$(curl -fsSL $OH_MY_ZSH_URL)"
-
 # config git
 git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
@@ -78,7 +74,10 @@ dotgit push --set-upstream origin main
 sudo chsh -s /usr/bin/zsh $USER
 
 # end of script
-echo "Congrats, your new machine is all setup!"
-echo "Logout and back in to start using zsh and all the goodness!"
+echo "Install oh-my-zsh and change default shell"
+
+# Install oh-my-zsh
+OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh -c "$(curl -fsSL $OH_MY_ZSH_URL)"
 
 
