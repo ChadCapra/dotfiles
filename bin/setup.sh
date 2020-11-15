@@ -59,8 +59,8 @@ rm -rf $DOTGIT_DIR
 mkdir -p $DOTGIT_BAK/bin
 
 # grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
-alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
+alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 # and capture existing files and move to backup folder
@@ -73,6 +73,9 @@ dotgit push --set-upstream origin main
 
 # remove any empty backup folders
 find $HOME/DOTGIT_DIR* -empty -type d -delete
+
+# Add DOTGIT_DIR env variable for zsh to allow for dotgit command
+echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
 
 echo "Installing oh-my-zsh and changing default shell to zsh"
 
