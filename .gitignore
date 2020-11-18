@@ -4,6 +4,7 @@
 # Recursively allow everything under "/bin"
 !bin/
 !bin/setup.sh
+!bin/tat
 
 # And the following files (at $HOME)
 !README.md
