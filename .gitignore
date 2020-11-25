@@ -12,3 +12,5 @@
 # Recursively allow everything under
 !/bin/**
 !/.vim/pack/plugins/start/**
+
+/\.oh-my-zsh
