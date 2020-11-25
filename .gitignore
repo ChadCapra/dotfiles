@@ -1,16 +1,15 @@
-# Ignore everything (except allow descending into directories)
+# Ignore everything
 *
-!*/
 
-# Include the following files (at root/home)
+# Except these files...
 !/\.gitignore
 !/\.tmux.conf
 !/\.vimrc
 !/\.zshrc
 !/README.md
 
-# Recursively allow everything under
-!/bin/**
+# And these subdirectories
+!bin/
+!/bin/*
 !/.vim/pack/plugins/start/**
 
-/\.oh-my-zsh
