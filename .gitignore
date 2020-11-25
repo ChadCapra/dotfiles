@@ -3,11 +3,11 @@
 !*/
 
 # Include the following files (at root/home)
-!\.gitignore
-!\.tmux.conf
-!\.vimrc
-!\.zshrc
-!README.md
+!/\.gitignore
+!/\.tmux.conf
+!/\.vimrc
+!/\.zshrc
+!/README.md
 
 # Recursively allow everything under "/bin"
 !/bin/**
