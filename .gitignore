@@ -8,8 +8,11 @@
 !/\.zshrc
 !/README.md
 
+# Now, ignore all subdirectories
+*/
+
 # And these subdirectories
 !bin/
-!/bin/*
-!/.vim/pack/plugins/start/**
-
+!bin/*
+!.vim/
+!.vim/pack/plugins/start/*
