@@ -100,3 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 # The following path must be changed "dotfiles" are stored in a different dir
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
+alias igit='/usr/bin/git --git-dir=$HOME/igitit --work-tree=$HOME/gittest'
+
+# use vi bindings in shell
+set -o vi
