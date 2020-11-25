@@ -9,6 +9,6 @@
 !/\.zshrc
 !/README.md
 
-# Recursively allow everything under "/bin"
+# Recursively allow everything under
 !/bin/**
 !/.vim/pack/plugins/start/**
