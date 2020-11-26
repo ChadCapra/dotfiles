@@ -1,15 +1,13 @@
-# Ignore everything
-*
+# Ignore everything in the root
+**
 !*/
 
-# And these subdirectories
-!/.oh-my-zsh/**
+# but include these directories
 !/bin/**
-!.vim/pack/plugins/**
 
 # Except these files...
-!/\.gitignore
-!/\.tmux.conf
-!/\.vimrc
-!/\.zshrc
+!/.gitignore
+!/.tmux.conf
+!/.vimrc
+!/.zshrc
 !/README.md
