@@ -1,5 +1,6 @@
 # Ignore everything
 *
+!*/
 
 # Except these files...
 !/\.gitignore
@@ -9,10 +10,9 @@
 !/README.md
 
 # Now, ignore all subdirectories
-*/
 
 # And these subdirectories
 !bin/
 !bin/*
 !.vim/
-!.vim/pack/plugins/start/*
+!.vim/pack/plugins/start/**
