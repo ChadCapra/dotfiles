@@ -1,11 +1,10 @@
-# Ignore everything in the root
-**
-!*/
+# Ignore everything in the root (which by default ignores subdirectories also)
+/*
 
-# but include these directories
-!/bin/**
+# But include the following directories (and sub directories)
+!/bin/
 
-# Except these files...
+# And include the following specific files
 !/.gitignore
 !/.tmux.conf
 !/.vimrc
