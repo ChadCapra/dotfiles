@@ -1,10 +1,8 @@
 # Ignore everything in the root (which by default ignores subdirectories also)
 /*
 
-# But include the following directories (and sub directories, as needed)
+# But include the following directories (and sub directories)
 !/bin/
-# /bin/*
-# !/bin/sub_dir/
 
 # And include the following specific files
 !/.gitignore
