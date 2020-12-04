@@ -1,6 +1,6 @@
-[submodule ".oh-my-zsh"]
+[submodule "oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git@github.com:ohmyzsh/ohmyzsh.git
-[submodule ".vim/pack/plugins/start/vim-tmux-navigator"]
+[submodule "vim-tmux-navigator"]
 	path = .vim/pack/plugins/start/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
