@@ -70,7 +70,8 @@ git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 
 # update submodules
-dotgit submodule update --init --recursive
+dotgit submodule init
+dotgit submodule update
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 # and capture existing files and move to backup folder
