@@ -66,7 +66,7 @@ rm -rf $DOTGIT_DIR
 mkdir -p $DOTGIT_BAK/bin
 
 # grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
-git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
+git clone --bare --recurse-submodules $GIT_REPO_PATH $DOTGIT_DIR
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
@@ -83,10 +83,6 @@ find $DOTGIT_BAK -empty -type d -delete
 
 # Add DOTGIT_DIR env variable for zsh to allow for dotgit command
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
-
-# Install oh-my-zsh (but keep .zshrc and don't change shells, yet)
-OH_MY_ZSH_URL=https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh -c "$(curl -fsSL $OH_MY_ZSH_URL)" "" --keep-zshrc --unattended
 
 # change default shell using sudo but for current user)
 sudo chsh -s $(which zsh) $USER
