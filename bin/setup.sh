@@ -69,15 +69,15 @@ mkdir -p $DOTGIT_BAK/bin
 git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 
-# update submodules
-dotgit submodule init
-dotgit submodule update
-
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 # and capture existing files and move to backup folder
 dotgit checkout 2>&1 | egrep "^\s+" | awk {'print $1'} \
   | xargs -I{} mv {} $DOTGIT_BAK/{}
 dotgit checkout
+
+# update submodules
+dotgit submodule init
+dotgit submodule update
 
 # Set up stream for pushing updates back to github
 dotgit push --set-upstream origin main
