@@ -66,8 +66,11 @@ rm -rf $DOTGIT_DIR
 mkdir -p $DOTGIT_BAK/bin
 
 # grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
-git clone --bare --recurse-submodules --remote-submodules $GIT_REPO_PATH $DOTGIT_DIR
+git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
+
+# update submodules
+dotgit submodule update --init --recursive
 
 # checkout to home folder (to add/replace .vimrc, .zshrc, etc)
 # and capture existing files and move to backup folder
