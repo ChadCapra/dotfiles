@@ -21,6 +21,22 @@ sudo apt update
 # Install vim, git, curl, wget, tmux, zsh
 sudo apt install -y vim git curl wget tmux zsh
 
+# Install docker (after uninstalling)
+sudo apt remove docker docker-engine docker.io containerd runc
+
+sudo apt install apt-transport-https ca-certificates
+sudo apt install gnupg-agent software-properties-common
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+
 # config git
 git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
