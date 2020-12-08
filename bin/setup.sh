@@ -59,7 +59,8 @@ sudo apt update
 # install docker and compose
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 
-sudo curl -L $COMPOSE_URL/$COMPOSE_VER/docker-compose-`uname -s`-`uname -m`
+sudo curl -L $COMPOSE_URL/$COMPOSE_VER/docker-compose-`uname -s`-`uname -m` \
+-o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 echo ""
