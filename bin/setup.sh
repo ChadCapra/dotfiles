@@ -12,18 +12,38 @@ SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
 DOTGIT_DIR=$HOME/dotfiles
 DOTGIT_BAK=$DOTGIT_DIR-"$(date +"%Y%m%d_%H%M%S")"
 
+COMPOSE_URL=https://github.com/docker/compose/releases/download/
+COMPOSE_VER=1.27.4
+
 # Set current directory to home
 cd $HOME
 
 # Update apt for latest versions
 sudo apt update
 
-# Install vim, git, curl, wget, tmux, zsh
-sudo apt install -y vim git curl wget tmux zsh
+echo ""
+echo "#########################################################################"
+echo "### Install vim, curl, wget, tmux, zsh, git                           ###"
+echo "#########################################################################"
+echo ""
 
-# Install docker (after uninstalling)
-sudo apt remove docker docker-engine docker.io containerd runc
+# Install vim, curl, wget, tmux, zsh, git
+sudo apt install -y vim curl wget tmux zsh git 
 
+# config git
+git config --global user.name "$NAME"
+git config --global user.email "$EMAIL"
+
+echo ""
+echo "#########################################################################"
+echo "### Install all docker components including docker-compose            ###"
+echo "#########################################################################"
+echo ""
+
+# remove previous install
+sudo apt remove docker docker-engine docker.io containerd runc docker-compose
+
+# install prereqs
 sudo apt install -y apt-transport-https ca-certificates
 sudo apt install -y gnupg-agent software-properties-common
 
@@ -35,13 +55,13 @@ sudo add-apt-repository \
    stable"
 
 sudo apt update
+
+# install docker and compose
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 
-# config git
-git config --global user.name "$NAME"
-git config --global user.email "$EMAIL"
+sudo curl -L $COMPOSE_URL/$COMPOSE_VER/docker-compose-`uname -s`-`uname -m`
+sudo chmod +x /usr/local/bin/docker-compose
 
-# create ssh key
 echo ""
 echo ""
 echo "#########################################################################"
@@ -50,6 +70,8 @@ echo "###    - Add password to better protect ssh key"
 echo "#########################################################################"
 echo ""
 echo ""
+
+# create ssh key
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
 
 echo ""
