@@ -7,3 +7,6 @@
 [submodule "vim-elixir"]
 	path = .vim/pack/plugins/start/vim-elixir
 	url = git@github.com:elixir-editors/vim-elixir.git
+[submodule "vim-vinegar"]
+	path = .vim/pack/plugins/start/vim-vinegar
+	url = git@github.com:tpope/vim-vinegar.git
