@@ -4,3 +4,6 @@
 [submodule "vim-tmux-navigator"]
 	path = .vim/pack/plugins/start/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
+[submodule "vim-elixir"]
+	path = .vim/pack/plugins/start/vim-elixir
+	url = git@github.com:elixir-editors/vim-elixir.git
