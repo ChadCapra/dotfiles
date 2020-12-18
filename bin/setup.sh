@@ -127,6 +127,9 @@ find $DOTGIT_BAK -empty -type d -delete
 # Add DOTGIT_DIR env variable for zsh to allow for dotgit command
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
 
+# Create undo directory for Vim (tie this to .vimrc eventually)
+mkdir $HOME/.vim/undodir -p
+
 # change default shell using sudo but for current user)
 sudo chsh -s $(which zsh) $USER
 
