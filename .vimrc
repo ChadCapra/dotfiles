@@ -12,10 +12,10 @@ set nowrap
 set smartcase
 set incsearch
 
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-set undofile
+set directory=$HOME/.vim/swap//
 
 set colorcolumn=81
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+if !has('gui_running')
+  set t_Co=256
+endif

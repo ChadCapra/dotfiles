@@ -19,3 +19,6 @@
 [submodule "vim-commentary"]
 	path = .vim/pack/plugins/start/vim-commentary
 	url = git@github.com:tpope/vim-commentary.git
+[submodule "vim-lightline"]
+	path = .vim/pack/plugins/start/vim-lightline
+	url = git@github.com:itchyny/lightline.vim.git

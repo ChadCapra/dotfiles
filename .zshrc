@@ -104,3 +104,6 @@ alias igit='/usr/bin/git --git-dir=$HOME/igitit --work-tree=$HOME/gittest'
 
 # use vi bindings in shell
 set -o vi
+
+# set colors for vim lightline plugin
+export TERM=xterm-256color
