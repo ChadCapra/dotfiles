@@ -19,6 +19,3 @@
 [submodule "vim-commentary"]
 	path = .vim/pack/plugins/start/vim-commentary
 	url = git@github.com:tpope/vim-commentary.git
-[submodule "vim-airline"]
-	path = .vim/pack/plugins/start/vim-airline
-	url = git@github.com:vim-airline/vim-airline.git
