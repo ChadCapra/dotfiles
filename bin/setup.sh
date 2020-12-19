@@ -23,12 +23,12 @@ sudo apt update
 
 echo ""
 echo "#########################################################################"
-echo "### Install vim, curl, wget, tmux, zsh, git                           ###"
+echo "### Install vim, curl, wget, tmux, zsh, git, fzf                      ###"
 echo "#########################################################################"
 echo ""
 
-# Install vim, curl, wget, tmux, zsh, git
-sudo apt install -y vim curl wget tmux zsh git 
+# Install vim, curl, wget, tmux, zsh, git, fzf
+sudo apt install -y vim curl wget tmux zsh git, fzf 
 
 # config git
 git config --global user.name "$NAME"
