@@ -23,12 +23,12 @@ sudo apt update
 
 echo ""
 echo "#########################################################################"
-echo "### Install vim, curl, wget, tmux, zsh, git, fzf                      ###"
+echo "### Install vim, curl, wget, tmux, zsh, git                           ###"
 echo "#########################################################################"
 echo ""
 
-# Install vim, curl, wget, tmux, zsh, git, fzf
-sudo apt install -y vim curl wget tmux zsh git, fzf 
+# Install vim, curl, wget, tmux, zsh, git
+sudo apt install -y vim curl wget tmux zsh git
 
 # config git
 git config --global user.name "$NAME"
@@ -127,8 +127,13 @@ find $DOTGIT_BAK -empty -type d -delete
 # Add DOTGIT_DIR env variable for zsh to allow for dotgit command
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
 
-# Create undo directory for Vim (tie this to .vimrc eventually)
-mkdir $HOME/.vim/undodir -p
+# Install ripgrep
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+sudo dpkg -i ripgrep_12.1.1_amd64.deb
+
+# Install Fzf 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 # change default shell using sudo but for current user)
 sudo chsh -s $(which zsh) $USER

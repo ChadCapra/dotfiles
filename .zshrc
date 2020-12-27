@@ -107,3 +107,7 @@ set -o vi
 
 # set colors for vim lightline plugin
 export TERM=xterm-256color
+
+# configure fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
