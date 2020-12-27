@@ -12,8 +12,6 @@ set nowrap
 set smartcase
 set incsearch
 
-set directory=$HOME/.vim/swap//
-
 set colorcolumn=81
 
 if !has('gui_running')
