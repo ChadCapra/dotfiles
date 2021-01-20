@@ -17,3 +17,13 @@ set colorcolumn=81
 if !has('gui_running')
   set t_Co=256
 endif
+
+" open splits in more natural way
+set splitbelow
+set splitright
+
+" set leader to space
+let mapleader = "\<Space>"
+
+nmap <leader>w :w<cr>
+nmap <leader>q :q<cr>

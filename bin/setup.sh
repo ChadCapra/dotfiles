@@ -1,20 +1,5 @@
 #!/bin/bash
 
-# Set Variables for script as desired
-NAME="Chad Capra"
-EMAIL="chadcapra@gmail.com"
-GIT_REPO_PATH="git@github.com:ChadCapra/dotfiles.git"
-
-SSH_KEY_TYPE="ed25519" 
-SSH_KEY_PARAMS="-o -a 256" 
-SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
-
-DOTGIT_DIR=$HOME/dotfiles
-DOTGIT_BAK=$DOTGIT_DIR-"$(date +"%Y%m%d_%H%M%S")"
-
-COMPOSE_URL=https://github.com/docker/compose/releases/download/
-COMPOSE_VER=1.27.4
-
 # Set current directory to home
 cd $HOME
 
@@ -30,10 +15,6 @@ echo ""
 # Install vim, curl, wget, tmux, zsh, git
 sudo apt install -y vim curl wget tmux zsh git
 
-# config git
-git config --global user.name "$NAME"
-git config --global user.email "$EMAIL"
-
 echo ""
 echo "#########################################################################"
 echo "### Install all docker components including docker-compose            ###"
@@ -43,7 +24,7 @@ echo ""
 # remove previous install
 sudo apt remove docker docker-engine docker.io containerd runc docker-compose
 
-# install prereqs
+# install prereqs (for docker)
 sudo apt install -y apt-transport-https ca-certificates
 sudo apt install -y gnupg-agent software-properties-common
 
@@ -59,6 +40,9 @@ sudo apt update
 # install docker and compose
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 
+COMPOSE_URL=https://github.com/docker/compose/releases/download/
+COMPOSE_VER=1.27.4
+
 sudo curl -L $COMPOSE_URL/$COMPOSE_VER/docker-compose-`uname -s`-`uname -m` \
 -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
@@ -73,6 +57,10 @@ echo ""
 echo ""
 
 # create ssh key
+SSH_KEY_TYPE="ed25519" 
+SSH_KEY_PARAMS="-o -a 256" 
+SSH_KEY_PATH="$HOME/.ssh/id_$SSH_KEY_TYPE"
+
 ssh-keygen $SSH_KEY_PARAMS -t $SSH_KEY_TYPE -C "$EMAIL" -f $SSH_KEY_PATH
 
 echo ""
@@ -99,12 +87,23 @@ echo "#########################################################################"
 echo ""
 read continue 
 
+# Configure git and bare directory
+NAME="Chad Capra"
+EMAIL="chadcapra@gmail.com"
+
+git config --global user.name "$NAME"
+git config --global user.email "$EMAIL"
+
 # delete existing bare git dir and create new backup folder
 # must include sub directories as mv will not (e.g. /bin)
+DOTGIT_DIR=$HOME/dotfiles
+DOTGIT_BAK=$DOTGIT_DIR-"$(date +"%Y%m%d_%H%M%S")"
+
 rm -rf $DOTGIT_DIR
 mkdir -p $DOTGIT_BAK/bin
 
 # grab data from github and store in bare local dir: "~/$DOTGIT_DIR"
+GIT_REPO_PATH="git@github.com:ChadCapra/dotfiles.git"
 git clone --bare $GIT_REPO_PATH $DOTGIT_DIR
 alias dotgit='/usr/bin/git --git-dir=$DOTGIT_DIR/ --work-tree=$HOME'
 
@@ -128,8 +127,11 @@ find $DOTGIT_BAK -empty -type d -delete
 echo "DOTGIT_DIR=$DOTGIT_DIR" >> $HOME/.zshenv
 
 # Install ripgrep
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
-sudo dpkg -i ripgrep_12.1.1_amd64.deb
+RIPGREP_VER=12.1.1
+RG_DWNLD_URL=https://github.com/BurntSushi/ripgrep/releases/download
+curl -LO $RG_DWNLD_URL/$RIPGREP_VER/ripgrep_$RIPGREP_VER_amd64.deb
+sudo dpkg -i ripgrep_$RIPGREP_VER_amd64.deb
+rm ripgrep_$RIPGREP_VER_amd64.deb
 
 # Install Fzf 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

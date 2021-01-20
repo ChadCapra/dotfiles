@@ -1,0 +1,31 @@
+# Things to remember
+
+This document is just for making lists of things I don't want to forget.  So
+many times I find something cool online or in the documentation and then forget
+it later that day.  Let's start documenting those things here!
+
+## List of installs for new setup:
+- Arch Linux (container on Crostini)
+- neovim
+- curl (or wget?)
+- tmux
+- fish
+- git
+
+## Vim commands to remember
+
+### Normal Mode
+g_ = end of line without carriage return
+gn = "go next" (visually select most recent search term)
+
+
+
+### Insert Mode
+
+
+
+### Command Mode
+
+<C-r> = refer to register (e.g. <C-r>0 is grab from register 0)
+        * also refers to entering expression (=) or word under cursor (<C-w)
+<C-w> = refer to word under cursor (vim knows where cursor is still at above)
